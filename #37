@@ -1,0 +1,44 @@
+import numpy as np 
+import math
+
+def isprime(numberToCheck):
+    if numberToCheck == 1:
+        return False
+    for x in range(2,int(numberToCheck*0.5)+ 1):
+        if (numberToCheck%x==0):
+            return False
+    return True
+#%%
+def truncatableprime(variable):
+    for x in range(0,len(variable)):
+        if isprime(int(variable[0:x+1])) == False or isprime(int(variable[x:len(variable)])) == False:
+            return False
+    return True
+#lhs = ["43"[0:x+1] for x in range(0,len("43"))]
+#rhs = ["43"[x:(len("43"))] for x in range(0,len("43"))]
+#print(lhs, list(map(lambda x: isprime(int(x)), lhs)))
+#print(rhs, list(map(lambda x: isprime(int(x)), rhs)))
+#print(isprime(4))
+
+#%%
+truncprimes = []
+sum = 0
+
+primes_found = 0
+current_value = 11
+while primes_found < 11:
+    checkPrime = True
+    num = str(current_value)
+    for x in range(0,len(num)):
+        if truncatableprime(num) == False:
+            checkPrime = False
+            break
+    if checkPrime == True:
+        truncprimes.append(num)
+        primes_found += 1
+    current_value += 2
+for a in truncprimes:
+    sum += int(a)
+print(truncprimes)
+print(sum)
+
